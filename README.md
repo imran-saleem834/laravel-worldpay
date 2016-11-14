@@ -9,7 +9,7 @@ Install this package through Composer. To your `composer.json` file, add:
 
 ``` bash
 "require": {
-    "Alvee/WorldPay": "0.1.*"
+    "alvee/worldpay": "0.1.*"
 }
 
 $ composer update
@@ -18,7 +18,7 @@ $ composer update
 Or
 
 ``` bash
-$ composer require Alvee/WorldPay
+$ composer require alvee/worldpay
 ```
 
 Then add the service provider in `config/app.php`:

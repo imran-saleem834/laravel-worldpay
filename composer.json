@@ -1,5 +1,5 @@
 {
-    "name": "alvee/worldPay",
+    "name": "alvee/worldpay",
     "type": "library",
     "description": "WorldPay's PHP SDK for REST APIs",
     "keywords": [
