@@ -9,17 +9,39 @@ Install this package through Composer. To your `composer.json` file, add:
 
 ``` bash
 "require": {
-    "alvee/worldpay": "0.1.*"
+    "alvee/worldpay": "@dev"
 }
-
 $ composer update
 ```
 
 Or
 
 ``` bash
-$ composer require alvee/worldpay
+$ composer require alvee/worldpay:@dev
 ```
+
+If you get the error `Could not find package alvee/worldpay at any version for your minimum-stability (stable). Check the package spelling or your minimum-stability` then please add the **repositories** (given below) in your `composer.json` file
+``` bash
+"repositories": [
+    {
+        "type": "package",
+        "package": {
+            "name": "alvee/worldpay",
+            "version": "dev-master",
+            "source": {
+                "url": "https://github.com/Sheikh-Alvee/laravel-worldpay",
+                "type": "git",
+                "reference": "master"
+            },
+            "autoload": {
+                "psr-0" : {
+                    "Alvee\\WorldPay\\": "src"
+                }
+            }
+        }
+    }
+],
+ ```
 
 Then add the service provider in `config/app.php`:
 
@@ -27,7 +49,11 @@ Then add the service provider in `config/app.php`:
 Alvee\WorldPay\WorldPayServiceProvider::class,
 ```
 
-Finally Publish the package configuration by running this CMD `php artisan vendor:publish`
+Finally Publish the package configuration by running this CMD
+
+``` bash
+php artisan vendor:publish
+```
 
 ## Configuration
 
@@ -40,19 +66,19 @@ server = sandbox or live
 
 Account credentials from developer portal
 [Test Account]
-sandbox.service =T_C_8b253cda-26d5-4917-bc39-6224c07d63tc
-sandbox.client =T_C_8b253cda-26d5-4917-bc39-6224c07d63tc
+sandbox.service = T_C_8b253cda-26d5-4917-bc39-6224c07d63tc
+sandbox.client = T_C_8b253cda-26d5-4917-bc39-6224c07d63tc
 
 [Live Account]
-live.service =T_C_8b253cda-26d5-4917-bc39-6224c07d63tc
-live.client =T_C_8b253cda-26d5-4917-bc39-6224c07d63tc
+live.service = T_C_8b253cda-26d5-4917-bc39-6224c07d63tc
+live.client = T_C_8b253cda-26d5-4917-bc39-6224c07d63tc
 ```
 
 ## Usage
-
+Copy routes and paste in your route file
 ```php
 Route::get('/worldpay', function () {
-    return view('vendor/alvee/worldpay.blade.php');
+    return view('vendor/alvee/worldpay');
 });
 
 Route::post('/charge', function (\Illuminate\Http\Request $request) {
@@ -68,7 +94,7 @@ Route::post('/charge', function (\Illuminate\Http\Request $request) {
         'postalCode'  => 'postal code here',
         'city'        => 'city here',
         'state'       => 'state here',
-        'countryCode' => 'country code here',
+        'countryCode' => 'GB',
     );
 
     try {
@@ -83,9 +109,12 @@ Route::post('/charge', function (\Illuminate\Http\Request $request) {
         ));
         if ($response['paymentStatus'] === 'SUCCESS') {
             $worldpayOrderCode = $response['orderCode'];
+            
+           echo "<pre>";
+           print_r($response);
         } else {
             // The card has been declined
-            throw new WorldpayException(print_r($response, true));
+            throw new \Alvee\WorldPay\lib\WorldpayException(print_r($response, true));
         }
     } catch (Alvee\WorldPay\lib\WorldpayException $e) {
         echo 'Error code: ' . $e->getCustomCode() . '

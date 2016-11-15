@@ -26,8 +26,8 @@ return [
     */
 
     'sandbox' => array(
-        'service' => 'T_C_8b253cda-26d5-4917-bc39-6224c07de2f2',
-        'client'  => 'T_S_8607ac72-c405-45cf-b186-b6a425515593',
+        'service' => 'T_C_8b253cda-26d5-4917-bc39-6224c07d63tc',
+        'client'  => 'T_C_8b253cda-26d5-4917-bc39-6224c07d63tc',
     ),
 
     /*
@@ -41,8 +41,8 @@ return [
     */
 
     'live' => array(
-        'service' => 'T_C_8b253cda-26d5-4917-bc39-6224c07de2f2',
-        'client'  => 'T_S_8607ac72-c405-45cf-b186-b6a425515593',
+        'service' => 'T_C_8b253cda-26d5-4917-bc39-6224c07d63tc',
+        'client'  => 'T_C_8b253cda-26d5-4917-bc39-6224c07d63tc',
     ),
 
 ];
