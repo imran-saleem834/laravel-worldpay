@@ -20,29 +20,6 @@ Or
 $ composer require alvee/worldpay:@dev
 ```
 
-If you get the error `Could not find package alvee/worldpay at any version for your minimum-stability (stable). Check the package spelling or your minimum-stability` then please add the **repositories** (given below) in your `composer.json` file
-``` bash
-"repositories": [
-    {
-        "type": "package",
-        "package": {
-            "name": "alvee/worldpay",
-            "version": "dev-master",
-            "source": {
-                "url": "https://github.com/Sheikh-Alvee/laravel-worldpay",
-                "type": "git",
-                "reference": "master"
-            },
-            "autoload": {
-                "psr-0" : {
-                    "Alvee\\WorldPay\\": "src"
-                }
-            }
-        }
-    }
-],
- ```
-
 Then add the service provider in `config/app.php`:
 
 ``` bash
