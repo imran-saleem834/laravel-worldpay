@@ -26,8 +26,8 @@ class WorldPayServiceProvider extends ServiceProvider
     public function register()
     {
         $this->publishes([
-            __DIR__ . '/config/config.php'        => config_path('worldpay.php'),
-            __DIR__ . '/views/worldpay.blade.php' => resource_path('views/vendor/alvee/worldpay.blade.php'),
+            __DIR__ . '/config/config.php'  => config_path('worldpay.php'),
+            __DIR__ . '/views/worldpay.php' => resource_path('views/vendor/alvee/worldpay.php'),
         ]);
     }
 
